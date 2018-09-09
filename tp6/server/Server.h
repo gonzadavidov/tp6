@@ -11,6 +11,7 @@
 
 
 #define HELLO_PORT "80"
+#define MESSAGE_LENGTH 600
 
 
 class server
@@ -20,11 +21,15 @@ public:
 	void startConnection();
 	void sendMessage();
 	void receiveMessage();
+	bool pathControl();
+
 	~server();
+	char receivedMessage[MESSAGE_LENGTH];		//Mensaje recibido
 
 private:
 	boost::asio::io_service*  IO_handler;
 	boost::asio::ip::tcp::socket* socket_forServer;
 	boost::asio::ip::tcp::acceptor* server_acceptor;
-	bool CLRF();
+	bool CRLF();
+	unsigned int lenOfMessage;			//Largo del mensaje recibido
 };

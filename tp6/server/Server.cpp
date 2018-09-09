@@ -58,8 +58,7 @@ void server::
 receiveMessage()
 {
 	boost::system::error_code error;
-	char buf[512];
-	size_t len = 0;
+	lenOfMessage = 0;
 	std::cout << "Receiving Message" << std::endl;
 	boost::timer::cpu_timer t;
 	t.start();
@@ -68,7 +67,7 @@ receiveMessage()
 
 	do
 	{
-		len = socket_forServer->read_some(boost::asio::buffer(buf), error);
+		lenOfMessage = socket_forServer->read_some(boost::asio::buffer(receivedMessage), error);
 
 		boost::timer::cpu_times currentTime = t.elapsed();
 
@@ -80,15 +79,23 @@ receiveMessage()
 		}
 
 		if (!error)
-			buf[len] = '\0';
+			receivedMessage[lenOfMessage] = '\0';
 
 	} while (error.value() == WSAEWOULDBLOCK);
 
 	if (!error)
-		std::cout << std::endl << "Server sais: " << buf << std::endl;
+		std::cout << std::endl << "Server sais: " << receivedMessage << std::endl;
 	else
 		std::cout << "Error while trying to connect to server " << error.message() << std::endl;
 }
+
+
+bool server::
+CRLF()
+{
+
+}
+
 
 server::
 ~server()
