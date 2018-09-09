@@ -111,6 +111,16 @@ pathCopy()
 	}
 }
 
+bool server::
+ispath()
+{
+	bool result = 0;
+	for (int count = 0; count <= PATHS && result != true; count++)
+	{
+
+	}
+
+}
 
 server::
 ~server()
