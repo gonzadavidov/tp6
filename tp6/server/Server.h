@@ -22,8 +22,7 @@ public:
 	void startConnection();
 	void sendMessage();
 	void receiveMessage();
-	bool pathCopy();
-	bool 
+	bool pathControl();
 
 	~server();
 	char receivedMessage[MESSAGE_LENGTH];		//Mensaje recibido
