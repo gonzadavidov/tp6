@@ -12,6 +12,7 @@
 
 #define HELLO_PORT "80"
 #define MESSAGE_LENGTH 600
+#define PATH_LENGTH 200
 
 
 class server
@@ -30,6 +31,6 @@ private:
 	boost::asio::io_service*  IO_handler;
 	boost::asio::ip::tcp::socket* socket_forServer;
 	boost::asio::ip::tcp::acceptor* server_acceptor;
-	bool CRLF();
 	unsigned int lenOfMessage;			//Largo del mensaje recibido
+	char path[PATH_LENGTH];
 };
