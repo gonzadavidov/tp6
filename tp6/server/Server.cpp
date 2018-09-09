@@ -91,22 +91,22 @@ receiveMessage()
 
 
 bool server::
-pathControl()
+pathCopy()
 {
-	for (int count = 0; count < MESSAGE_LENGTH; count++) // para recorrer inputMessage
+	for (int count = 0; count < MESSAGE_LENGTH; count++)   
 	{
-		if (receivedMessage[count] == '/') // si se encontro la barra donde comienza el path entra a la sentencia
+		if (receivedMessage[count] == '/')   //ingresa al encontrar inicio del path
 		{
-			int i = 0; // inicializo una variable auxiliar
-			while (receivedMessage[count] != ' ' && (count < MESSAGE_LENGTH)) // mientras que no se encuentre el espacio indicando que termino el path
+			int i = 0;   
+			while (receivedMessage[count] != ' ' && (count < MESSAGE_LENGTH))   //si encuentra espacio, termino el path
 			{
 
-				path[i] = receivedMessage[count]; // voy copiando
+				path[i] = receivedMessage[count];   
 				++i;
-				++count; // para que pase al elemento siguiente
+				++count;   //para que pase al elemento siguiente
 
 			}
-			count = MESSAGE_LENGTH; // para que salga del for
+			count = MESSAGE_LENGTH; //para que salga del for
 		}
 	}
 }
