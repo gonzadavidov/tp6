@@ -131,6 +131,7 @@ CRLF()
 				count = MESSAGE_LENGTH;						//salir del for
 			}
 		}
+
 	}
 	return found;
 }
@@ -156,6 +157,20 @@ pathCopy()
 	}
 }
 
+bool server::
+ispath()
+{
+	bool result = false;
+	for (int count = 0; count <= PATHS && result != true; count++)
+	{
+		result = strcmp(path, server_paths[count]);
+		if (result == 0)
+		{
+			result = true;
+		}
+	}
+	return result;
+}
 
 server::
 ~server()
