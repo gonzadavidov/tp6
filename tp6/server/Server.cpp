@@ -93,7 +93,22 @@ receiveMessage()
 bool server::
 pathControl()
 {
+	for (int count = 0; count < MESSAGE_LENGTH; count++) // para recorrer inputMessage
+	{
+		if (receivedMessage[count] == '/') // si se encontro la barra donde comienza el path entra a la sentencia
+		{
+			int i = 0; // inicializo una variable auxiliar
+			while (receivedMessage[count] != ' ' && (count < MESSAGE_LENGTH)) // mientras que no se encuentre el espacio indicando que termino el path
+			{
 
+				path[i] = receivedMessage[count]; // voy copiando
+				++i;
+				++count; // para que pase al elemento siguiente
+
+			}
+			count = MESSAGE_LENGTH; // para que salga del for
+		}
+	}
 }
 
 
