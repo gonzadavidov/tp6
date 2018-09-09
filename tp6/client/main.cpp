@@ -4,12 +4,6 @@
 
 using namespace std;
 
-struct mensaje
-{
-	char* inicio;
-}; 
-
-}
 
 int
 main(int argc, char* argv[])
@@ -19,10 +13,9 @@ main(int argc, char* argv[])
 	cliente.startConnection(SERVER_IP);
 	cliente.receiveMessage();
 	
-	ofstream archivo_salida("file.txt");    // Se abre el archivo para escribir.
-
-	archivo_salida << mensaje.inicio << endl;     // Se escribe en el archivo
-	archivo_salida.close();                     // SE cierra el archivo
+	ofstream archivo_salida("file.txt");			// Se abre el archivo para escribir
+	archivo_salida << cliente.mensaje << endl;		// Se escribe en el archivo
+	archivo_salida.close();							// Se cierra el archivo
 
 	cout << "Press Enter to exit..." << endl;
 	getchar();
