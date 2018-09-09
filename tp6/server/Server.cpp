@@ -176,9 +176,15 @@ ispath()
 }
 
 bool server::
-fillcontent(FILE* file)
+fillContent(FILE* file)
 {
-
+	unsigned int i = 0;
+	char c;
+	do
+	{
+		contenido =contenido + (char) getc(file);
+		i++;
+	} while (c != EOF);
 }
 server::
 ~server()

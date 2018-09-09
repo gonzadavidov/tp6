@@ -27,7 +27,7 @@ public:
 	bool ispath();
 	~server();
 	char receivedMessage[MESSAGE_LENGTH];		//Mensaje recibido
-
+	bool fillContent(FILE* file);
 private:
 	boost::asio::io_service*  IO_handler;
 	boost::asio::ip::tcp::socket* socket_forServer;
@@ -39,5 +39,5 @@ private:
 	bool CRLF();
 	bool first_line();
 	const char * server_paths[PATHS] = { "example_paths1/folder","example_paths2/folder","example_paths3/folder","example_paths4/folder" };
-
+	std::string contenido;
 };
