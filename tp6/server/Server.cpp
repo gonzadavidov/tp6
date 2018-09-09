@@ -136,7 +136,35 @@ CRLF()
 bool server::
 first_line()
 {
-	firstLine[]
+	char correct = false;
+	char * lineOne;
+	const char * firstWord = "GET";
+	const char * secondWord = "HTTP/1.1";
+	lineOne = strtok(firstLine, " ");
+	if (!strcmp(lineOne, firstWord))
+	{
+		strtok(NULL, " ");				//salteo el path
+		lineOne = strtok(NULL, " ");	//busco HTTP/1.1
+		if (!strcmp(lineOne, secondWord))
+		{
+			correct = true;
+		}
+	}
+	return correct;
+}
+
+bool server::
+second_line()
+{
+	char correct = false;
+	char * lineTwo;
+	const char * firstWord = "Host:127.0.0.1";
+	lineTwo = strtok(secondLine, " ");
+	if (!strcmp(lineTwo, firstWord))
+	{
+		correct = true;
+	}
+	return correct;
 }
 
 bool server::

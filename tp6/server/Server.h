@@ -10,6 +10,7 @@
 #include <boost/timer/timer.hpp>
 
 
+#define CRT_SECURE_NO_WARNINGS
 #define HELLO_PORT "80"
 #define MESSAGE_LENGTH 600
 #define PATH_LENGTH 150
@@ -35,9 +36,9 @@ private:
 	unsigned int lenOfMessage;			//Largo del mensaje recibido
 	char path[PATH_LENGTH];				//path recibido
 	char firstLine[LINE_LENGTH];
-	char secondLine[LINE_LENGTH];
-	bool CRLF();
-	bool first_line();
+	char secondLine[LINE_LENGTH];		
+	bool CRLF();						//busca que esten los 3 CRLF
+	bool first_line();					//se fija que la primera linea sea correcta
+	bool second_line();					//se fija que la segunda linea sea correcta
 	const char * server_paths[PATHS] = { "example_paths1/folder","example_paths2/folder","example_paths3/folder","example_paths4/folder" };
-
 };
