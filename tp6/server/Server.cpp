@@ -8,6 +8,7 @@ server()
 
 	socket_forServer = new boost::asio::ip::tcp::socket(*IO_handler);
 	server_acceptor = new boost::asio::ip::tcp::acceptor(*IO_handler, ep);
+	contenido = "";
 }
 
 void server::
@@ -158,6 +159,11 @@ ispath()
 	return result;
 }
 
+bool server::
+fillcontent(FILE* file)
+{
+
+}
 server::
 ~server()
 {
