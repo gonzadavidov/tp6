@@ -22,8 +22,8 @@ public:
 	void startConnection();
 	void sendMessage();
 	void receiveMessage();
-	bool pathCopy();
-
+	bool pathCopy();							//guarda el path en el arreglo
+	bool CRLF();
 	~server();
 	char receivedMessage[MESSAGE_LENGTH];		//Mensaje recibido
 
@@ -32,5 +32,5 @@ private:
 	boost::asio::ip::tcp::socket* socket_forServer;
 	boost::asio::ip::tcp::acceptor* server_acceptor;
 	unsigned int lenOfMessage;			//Largo del mensaje recibido
-	char path[PATH_LENGTH];
+	char path[PATH_LENGTH];				//path recibido
 };
