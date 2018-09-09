@@ -97,11 +97,11 @@ CRLF()
 	int CRLFCount = 0;
 	for (int count = 0; count < MESSAGE_LENGTH; count++)
 	{
-		if (CRLFCount = 0)
+		if (CRLFCount = 0 && receivedMessage[count] != '/r')
 		{
 			firstLine[count] = receivedMessage[count];
 		}
-		else if (CRLFCount = 1)
+		else if (CRLFCount = 1 && receivedMessage[count] != '/r')
 		{
 			secondLine[count] = receivedMessage[count];
 		}
@@ -109,17 +109,33 @@ CRLF()
 		{
 			if (receivedMessage[count + 1] == '/n')
 			{
-						CRLFCount++;
-						if (CRLFCount == 3)
-						{
-							found = true;
-							count = MESSAGE_LENGTH;
-						}
+					CRLFCount++;
+					if (CRLFCount == 3)
+					{
+						found = true;
+						count = MESSAGE_LENGTH;
+					}
+			}
+			else
+			{
+				if (CRLFCount = 0)
+				{
+					firstLine[count] = receivedMessage[count];
+				}
+				else if (CRLFCount = 1)
+				{
+					secondLine[count] = receivedMessage[count];
+				}
 			}
 		}
-
 	}
 	return found;
+}
+
+bool server::
+first_line()
+{
+	firstLine[]
 }
 
 bool server::
