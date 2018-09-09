@@ -91,7 +91,7 @@ receiveMessage()
 
 
 bool server::
-CRLF()
+pathControl()
 {
 
 }
