@@ -23,7 +23,6 @@ public:
 	void sendMessage();
 	void receiveMessage();
 	bool pathCopy();
-	bool 
 
 	~server();
 	char receivedMessage[MESSAGE_LENGTH];		//Mensaje recibido
