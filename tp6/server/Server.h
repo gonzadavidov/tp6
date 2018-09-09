@@ -14,7 +14,7 @@
 #define MESSAGE_LENGTH 600
 #define PATH_LENGTH 150
 #define LINE_LENGTH 200
-
+#define PATHS 4
 
 class server
 {
@@ -24,6 +24,7 @@ public:
 	void sendMessage();
 	void receiveMessage();
 	bool pathCopy();							//guarda el path en el arreglo
+	bool ispath();
 	~server();
 	char receivedMessage[MESSAGE_LENGTH];		//Mensaje recibido
 
