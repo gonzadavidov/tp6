@@ -37,5 +37,6 @@ private:
 	char firstLine[LINE_LENGTH];
 	char secondLine[LINE_LENGTH];
 	bool CRLF();
+	const char * server_paths[PATHS] = { "example_paths1/folder","example_paths2/folder","example_paths3/folder","example_paths4/folder" };
 
 };
