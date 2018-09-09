@@ -25,7 +25,6 @@ public:
 	void receiveMessage();
 	bool pathCopy();							//guarda el path en el arreglo
 	bool ispath();
-	bool fillcontent(FILE* file);
 	~server();
 	char receivedMessage[MESSAGE_LENGTH];		//Mensaje recibido
 
@@ -38,6 +37,7 @@ private:
 	char firstLine[LINE_LENGTH];
 	char secondLine[LINE_LENGTH];
 	bool CRLF();
-	const char * server_paths[PATHS] = { "/example_paths1/folder","/example_paths2/folder","/example_paths3/folder","/example_paths4/folder" };
-	std::string contenido;
+	bool first_line();
+	const char * server_paths[PATHS] = { "example_paths1/folder","example_paths2/folder","example_paths3/folder","example_paths4/folder" };
+
 };
