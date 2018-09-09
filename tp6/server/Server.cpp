@@ -97,6 +97,14 @@ CRLF()
 	int CRLFCount = 0;
 	for (int count = 0; count < MESSAGE_LENGTH; count++)
 	{
+		if (CRLFCount = 0)
+		{
+			firstLine[count] = receivedMessage[count];
+		}
+		else if (CRLFCount = 1)
+		{
+			secondLine[count] = receivedMessage[count];
+		}
 		if (receivedMessage[count] == '/')   //ingresa al encontrar inicio del path
 		{
 			if (receivedMessage[count + 1] == 'r')
