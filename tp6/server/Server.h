@@ -13,7 +13,7 @@
 #define HELLO_PORT "80"
 #define MESSAGE_LENGTH 600
 #define PATH_LENGTH 200
-
+#define PATHS 4
 
 class server
 {
@@ -24,6 +24,7 @@ public:
 	void receiveMessage();
 	bool pathCopy();							//guarda el path en el arreglo
 	bool CRLF();
+	bool ispath();
 	~server();
 	char receivedMessage[MESSAGE_LENGTH];		//Mensaje recibido
 
@@ -33,4 +34,5 @@ private:
 	boost::asio::ip::tcp::acceptor* server_acceptor;
 	unsigned int lenOfMessage;			//Largo del mensaje recibido
 	char path[PATH_LENGTH];				//path recibido
+	const char * server_paths[PATHS] = { "/example_path1/folder","/example_path2/folder", "/example_path3/folder","/example_path4/folder" };
 };
