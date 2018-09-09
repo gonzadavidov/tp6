@@ -91,6 +91,43 @@ receiveMessage()
 
 
 bool server::
+CRLF()
+{
+	bool found = false;
+	int CRLFCount = 0;
+	for (int count = 0; count < MESSAGE_LENGTH; count++)
+	{
+		if (receivedMessage[count] == '/')   //ingresa al encontrar inicio del path
+		{
+			if (receivedMessage[count + 1] == 'r')
+			{
+				if (receivedMessage[count + 2] == '/')
+				{
+					if (receivedMessage[count + 3] == 'n')
+					{
+						CRLFCount++;
+						if (CRLFCount == 3)
+						{
+							found = true;
+							count = MESSAGE_LENGTH;
+						}
+					}
+					else if (receivedMessage[count + 3] == '0')
+					{
+						count = MESSAGE_LENGTH;						//salir del for
+					}
+				}
+			}
+			else if (receivedMessage[count + 1] == '0')
+			{
+				count = MESSAGE_LENGTH;						//salir del for
+			}
+		}
+	}
+	return found;
+}
+
+bool server::
 pathCopy()
 {
 	for (int count = 0; count < MESSAGE_LENGTH; count++)   
