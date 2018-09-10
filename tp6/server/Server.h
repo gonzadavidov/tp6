@@ -11,12 +11,13 @@
 
 
 #define CRT_SECURE_NO_WARNINGS
-#define HELLO_PORT "80"
+#define PORT "80"
 #define MESSAGE_LENGTH 600
 #define PATH_LENGTH 150
 #define LINE_LENGTH 200
 #define PATHS 4
-
+#define SENT_MESSAGE_LENGTH 600
+#define LOCALHOST (127.0.0.1)
 class server
 {
 public:
@@ -26,8 +27,10 @@ public:
 	void receiveMessage();
 	bool pathCopy();							//guarda el path en el arreglo
 	bool ispath();
+	bool fillContent(FILE* file);
 	~server();
 	char receivedMessage[MESSAGE_LENGTH];		//Mensaje recibido
+	char sentMessage[SENT_MESSAGE_LENGTH];
 
 private:
 	boost::asio::io_service*  IO_handler;
@@ -40,5 +43,9 @@ private:
 	bool CRLF();						//busca que esten los 3 CRLF
 	bool first_line();					//se fija que la primera linea sea correcta
 	bool second_line();					//se fija que la segunda linea sea correcta
+	bool message(bool);
+	unsigned int messageLength;
 	const char * server_paths[PATHS] = { "example_paths1/folder","example_paths2/folder","example_paths3/folder","example_paths4/folder" };
+	
+	std::string contenido;
 };

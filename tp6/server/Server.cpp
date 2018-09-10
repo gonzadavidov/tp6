@@ -4,7 +4,7 @@ server::
 server()
 {
 	IO_handler = new boost::asio::io_service();
-	boost::asio::ip::tcp::endpoint ep(boost::asio::ip::tcp::v4(), HELLO_PORT);
+	boost::asio::ip::tcp::endpoint ep(boost::asio::ip::tcp::v4(), PORT);
 
 	socket_forServer = new boost::asio::ip::tcp::socket(*IO_handler);
 	server_acceptor = new boost::asio::ip::tcp::acceptor(*IO_handler, ep);
@@ -30,7 +30,7 @@ startConnection()
 	} while ((error.value() == WSAEWOULDBLOCK));
 	if (error)
 	{
-		std::cout << "Error while trying to listen to " << HELLO_PORT << "Port " << error.message() << std::endl;
+		std::cout << "Error while trying to listen to " << PORT << "Port " << error.message() << std::endl;
 	}
 
 	//server_acceptor->accept(*socket_forServer);
@@ -213,7 +213,76 @@ fillContent(FILE* file)
 		contenido =contenido + (char) getc(file);
 		i++;
 	} while (c != EOF);
+	messageLength = i;
 }
+
+
+void server::
+sendMessage()
+{
+	unsigned int len;
+	boost::system::error_code error;
+	do
+	{
+		len = socket_forServer->write_some(boost::asio::buffer(sentMessage, strlen(sentMessage)), error);
+	} while ((error.value() == WSAEWOULDBLOCK));
+	if (error)
+	{
+		std::cout << "Error while trying to connect to server " << error.message() << std::endl;
+	}
+}
+
+bool server::
+message(bool check)
+{
+	bool answer = false;
+	FILE* fileCheck = fopen(path, "rb");
+	fillContent(fileCheck);
+	if (fileCheck != NULL)
+	{
+		if (check)
+		{ 
+			answer=true;
+		}
+				
+	}
+	else
+	{
+		std::cout << "Error while trying to open file " << std::endl;
+	}
+	fclose(fileCheck);
+	time_t currenTime = time(NULL);
+	struct tm expire_tm = *localtime(&currenTime);
+	expire_tm.tm_sec += 30;
+
+	if (answer)
+	{
+		using namespace std;
+		string output = "HTTP/1.1 200 OK\n"
+						"date" + string(ctime(&currenTime)) + '\n' +
+						"Location:" + (string)LOCALHOST + (string)path + '\n' +   //revisar esto
+						"Cache-Control: max-age=30" + '\n' +
+						"Expires:" + (string)asctime(&expire_tm) + '\n' +
+						"Content-Length:" + messageLength + '\n' +
+						"Content-Type: text / html; charset = iso - 8859 - 1 string(content)" + '\n' + contenido;
+
+			strcpy(sentMessage, output.c_str());
+	}
+	else
+	{
+		using namespace std;
+		string output = "HTTP/1.1 404 NOT FOUND\n"
+						"date" + string(ctime(&currenTime)) + '\n' +
+						"Cache-Control: max-age=30" + '\n' +
+						"Expires:" + (string)asctime(&expire_tm) + '\n' +
+						"Content-Length: 0" + '\n' +
+						"Content-Type: text / html; charset = iso - 8859 - 1 string(content)" + '\n';
+
+		strcpy(sentMessage, output.c_str());
+	}
+}
+
+
 server::
 ~server()
 {
@@ -222,4 +291,5 @@ server::
 	delete server_acceptor;
 	delete socket_forServer;
 	delete IO_handler;
+	
 }
