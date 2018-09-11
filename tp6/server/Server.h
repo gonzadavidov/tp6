@@ -47,7 +47,7 @@ private:
 	void pathCopy();					//guarda el path en el arreglo
 	bool fillContent(FILE* file);
 	int messageLength;
-	const char * server_paths[PATHS] = { "example_paths1/folder","example_paths2/folder","example_paths3/folder","example_paths4/folder" };
+	const char * server_paths[PATHS] = { "/example_paths1/file.txt","/example_paths2/file.txt","/example_paths3/file.txt","/example_paths4/file.txt" };
 	
 	std::string contenido;
 };
