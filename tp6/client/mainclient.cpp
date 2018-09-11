@@ -14,13 +14,15 @@ main(int argc, char* argv[])
 	cout << "Tratando de conectarse a " << obtenerHost(argv[1], host) << " Puerto: " << HELLO_PORT_STR << endl; //mensaje
 	client.startConnection(obtenerHost(argv[1], host));  //conecta al host
 	string mensajeSolicitud = crearMensaje(argv[1]);		//se crea el mensaje para solicitarle al server en el  formato q interpreta
+	std::cout << "Press Enter to Send Message  " << std::endl;
+	getchar();
 	client.sendMessage(mensajeSolicitud.c_str());		//se envia mensaje al servidor
 	client.receiveMessage();					//espera y recibe respuesta del server
 	ofstream archivo_salida("wwwPaginacom.txt");	// Se abre el archivo TXT para escribir	
 	archivo_salida << client.messageReceived;		// Se escribe en el archivo TXT el mensaje recibido del servidor
+	Sleep(500); // Le damos 50ms para que llegue el mensaje antes de cerrar el socket.
 	archivo_salida.close();							// Se cierra el archivo
 	cout << "Press Enter to exit..." << endl;
-
 	getchar();
 	return 0;
 }

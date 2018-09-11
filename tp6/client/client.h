@@ -18,8 +18,7 @@ public:
 	client();
 	void startConnection(const char* host);
 	void receiveMessage();
-	void sendMessage(const char* mensaje);
-	unsigned int messageLength;
+	void sendMessage(const char * mensaje);
 	string messageReceived;
 	~client();
 
@@ -28,5 +27,6 @@ private:
 	boost::asio::ip::tcp::socket* socket_forClient;
 	boost::asio::ip::tcp::resolver* client_resolver;
 	boost::asio::ip::tcp::resolver::iterator endpoint;
+	unsigned int messageLength;
 };
 
