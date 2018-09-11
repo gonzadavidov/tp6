@@ -14,7 +14,7 @@ main(int argc, char* argv[])
 	cout << "Tratando de conectarse a " << obtenerHost(argv[1], host) << " Puerto: " << HELLO_PORT_STR << endl; //mensaje
 	client.startConnection(obtenerHost(argv[1], host));  //conecta al host
 	string mensajeSolicitud = crearMensaje(argv[1]);		//se crea el mensaje para solicitarle al server en el  formato q interpreta
-	client.sendMessage(mensajeSolicitud.c_str());		//se envia mensaje al servidor
+	client.sendMessage(mensajeSolicitud.c_str());//se envia mensaje al servidor
 	client.receiveMessage();					//espera y recibe respuesta del server
 	ofstream archivo_salida("wwwPaginacom.txt");	// Se abre el archivo TXT para escribir	
 	archivo_salida << client.messageReceived;		// Se escribe en el archivo TXT el mensaje recibido del servidor

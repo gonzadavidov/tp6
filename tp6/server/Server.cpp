@@ -212,13 +212,14 @@ isPath()
 	return result;
 }
 
-bool server::
+void server::
 fillContent(FILE* file)
 {
 	messageLength = 0;
 	char c;
 	do
 	{
+		c = (char)getc(file);
 		contenido =contenido + (char) getc(file);
 		messageLength++;
 	} while (c != EOF);
@@ -242,7 +243,7 @@ sendMessage()
 	}
 }
 
-bool server::
+void server::
 message(bool check)
 {
 	bool answer = false;

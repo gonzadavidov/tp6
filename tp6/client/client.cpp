@@ -64,7 +64,7 @@ receiveMessage()
 
 	if (!error) {
 		messageReceived = buf;
-		cout << std::endl << "Server sais: " << buf << std::endl;
+		cout << std::endl << "Server says: " << buf << std::endl;
 	}
 	else
 		cout << "Error while trying to connect to server " << error.message() << std::endl;
