@@ -18,7 +18,7 @@ public:
 	client();
 	void startConnection(const char* host);
 	void receiveMessage();
-	void sendMessage(char* mensaje);
+	void sendMessage(const char* mensaje);
 	unsigned int messageLength;
 	string messageReceived;
 	~client();

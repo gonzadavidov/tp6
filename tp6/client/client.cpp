@@ -71,7 +71,7 @@ receiveMessage()
 }
 
 void client::
-sendMessage(char* mensaje)
+sendMessage(const char* mensaje)
 {
 	boost::system::error_code error;
 	do
