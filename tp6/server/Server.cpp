@@ -220,11 +220,9 @@ fillContent(FILE* file)
 	do
 	{
 		c = (char)getc(file);
-		contenido =contenido + (char) getc(file);
+		contenido = contenido + c;
 		messageLength++;
 	} while (c != EOF);
-
-	
 }
 
 
@@ -243,7 +241,7 @@ sendMessage()
 	}
 }
 
-void server::
+bool server::
 message(bool check)
 {
 	bool answer = false;
@@ -294,6 +292,7 @@ message(bool check)
 
 		strcpy(sentMessage, output.c_str());
 	}
+	return answer;
 }
 
 
