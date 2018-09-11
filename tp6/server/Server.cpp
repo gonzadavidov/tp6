@@ -212,18 +212,17 @@ isPath()
 	return result;
 }
 
-bool server::
+void server::
 fillContent(FILE* file)
 {
 	messageLength = 0;
 	char c;
 	do
 	{
-		contenido =contenido + (char) getc(file);
+		c = (char)getc(file);
+		contenido = contenido + c;
 		messageLength++;
 	} while (c != EOF);
-
-	
 }
 
 
@@ -293,6 +292,7 @@ message(bool check)
 
 		strcpy(sentMessage, output.c_str());
 	}
+	return answer;
 }
 
 

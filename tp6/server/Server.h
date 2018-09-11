@@ -12,7 +12,7 @@
 
 #define _OPEN_SYS_ITOA_EXT
 #define CRT_SECURE_NO_WARNINGS
-#define PORT "80"
+#define PORT 80
 #define MESSAGE_LENGTH 600
 #define PATH_LENGTH 150
 #define LINE_LENGTH 200
@@ -45,7 +45,7 @@ private:
 	bool first_line();					//se fija que la primera linea sea correcta
 	bool second_line();					//se fija que la segunda linea sea correcta
 	void pathCopy();					//guarda el path en el arreglo
-	bool fillContent(FILE* file);
+	void fillContent(FILE* file);
 	int messageLength;
 	const char * server_paths[PATHS] = { "/example_paths1/file.txt","/example_paths2/file.txt","/example_paths3/file.txt","/example_paths4/file.txt" };
 	
