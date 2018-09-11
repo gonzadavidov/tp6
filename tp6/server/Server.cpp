@@ -108,11 +108,11 @@ CRLF()
 	return found;
 	for (int count = 0; count < MESSAGE_LENGTH; count++)
 	{
-		if (CRLFCount = 0 && receivedMessage[count] != '/r')
+		if (CRLFCount == 0 && receivedMessage[count] != '/r')
 		{
 			firstLine[count] = receivedMessage[count];
 		}
-		else if (CRLFCount = 1 && receivedMessage[count] != '/r')
+		else if (CRLFCount == 1 && receivedMessage[count] != '/r')
 		{
 			secondLine[count] = receivedMessage[count];
 		}
