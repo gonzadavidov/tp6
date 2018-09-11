@@ -4,7 +4,7 @@ server::
 server()
 {
 	IO_handler = new boost::asio::io_service();
-	boost::asio::ip::tcp::endpoint ep(boost::asio::ip::tcp::v4(), PORT);
+	boost::asio::ip::tcp::endpoint ep(boost::asio::ip::tcp::v4(),PORT);
 
 	socket_forServer = new boost::asio::ip::tcp::socket(*IO_handler);
 	server_acceptor = new boost::asio::ip::tcp::acceptor(*IO_handler, ep);
@@ -206,15 +206,15 @@ ispath()
 bool server::
 fillContent(FILE* file)
 {
-	unsigned int i = 0;
+	messageLength = 0;
 	char c;
 	do
 	{
 		contenido =contenido + (char) getc(file);
-		i++;
+		messageLength++;
 	} while (c != EOF);
 
-	messageLength = i;
+	
 }
 
 

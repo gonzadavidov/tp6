@@ -46,7 +46,7 @@ private:
 	bool second_line();					//se fija que la segunda linea sea correcta
 	bool message(bool);
 	unsigned int messageLength;
-	const char * server_paths[PATHS] = { "example_paths1/folder","example_paths2/folder","example_paths3/folder","example_paths4/folder" };
+	const char * server_paths[PATHS] = { "/example_paths1/folder","/example_paths2/folder","/example_paths3/folder","/example_paths4/folder" };
 	
 	std::string contenido;
 };
