@@ -213,6 +213,7 @@ fillContent(FILE* file)
 		contenido =contenido + (char) getc(file);
 		i++;
 	} while (c != EOF);
+
 	messageLength = i;
 }
 
