@@ -27,7 +27,7 @@ public:
 	void sendMessage();
 	bool receiveMessage();							
 	bool isPath();
-	bool message(bool);
+	void message(bool);
 	bool messageCheck();
 	~server();
 	char receivedMessage[MESSAGE_LENGTH];		//Mensaje recibido
