@@ -17,6 +17,8 @@ main(int argc, char* argv[])
 	std::cout << "Press Enter to Send Message  " << std::endl;
 	getchar();
 	client.sendMessage(mensajeSolicitud.c_str());		//se envia mensaje al servidor
+	std::cout << "Press Enter to Receive Message  " << std::endl;
+	getchar();
 	client.receiveMessage();					//espera y recibe respuesta del server
 	ofstream archivo_salida("wwwPaginacom.txt");	// Se abre el archivo TXT para escribir	
 	archivo_salida << client.messageReceived;		// Se escribe en el archivo TXT el mensaje recibido del servidor
@@ -41,6 +43,6 @@ char*  obtenerHost(char* entrada, char host[]) {
 string crearMensaje(char * path)
 {
 	string mensaje;
-	string a = "GET", b = path, c = "HTTP/1.1" + '\r' + '\n', d = "Host:127.0.0.1" + '\r' + '\n' + '\r' + '\n';
+	string a = "GET ", b = path, c = " HTTP/1.1" + '\r' + '\n', d = "Host:127.0.0.1 " + '\r' + '\n' + '\r' + '\n';
 	return mensaje = a + b + c + d;
 }

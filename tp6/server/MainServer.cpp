@@ -24,6 +24,7 @@ main(int argc, char* argv[])
 		else
 		{
 			std::cout << "Message in wrong format" << std::endl;
+			Sleep(50);
 			return 0;
 		}
 	}
