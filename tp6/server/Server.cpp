@@ -105,7 +105,7 @@ CRLF()
 {
 	bool found = false;
 	int CRLFCount = 0;
-	for (int count = 0; count < MESSAGE_LENGTH; count++)
+	for (int count = 0; count < messageLength; count++)
 	{
 		if (CRLFCount == 0 && receivedMessage[count] != '\r')
 		{
@@ -123,7 +123,7 @@ CRLF()
 					if (CRLFCount == 3)
 					{
 						found = true;
-						count = MESSAGE_LENGTH;
+						count = messageLength;
 					}
 			}
 			else
