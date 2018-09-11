@@ -10,7 +10,8 @@
 #include <boost/timer/timer.hpp>
 #include <stdlib.h>
 
-#define _OPEN_SYS_ITOA_EXT
+
+#define END "\u000d\u000a"
 #define CRT_SECURE_NO_WARNINGS
 #define PORT 80
 #define MESSAGE_LENGTH 600
@@ -19,6 +20,7 @@
 #define PATHS 4
 #define SENT_MESSAGE_LENGTH 600
 #define LOCALHOST (127.0.0.1)
+
 class server
 {
 public:

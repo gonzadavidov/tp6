@@ -271,24 +271,24 @@ message(bool check)
 		string str = auxiliar.str();
 
 		string output = "HTTP/1.1 200 OK\n"
-						"date" + string(ctime(&currenTime)) + '\n' +
-						"Location: 127.0.0.1" + (string)path + '\n' +   //revisar esto
-						"Cache-Control: max-age=30" + '\n' +
-						"Expires:" + (string)asctime(&expire_tm) + '\n' +
-						"Content-Length:" + str + '\n' +
-						"Content-Type: text / html; charset = iso - 8859 - 1 string(content)" + '\n' + contenido;
+						"date" + string(ctime(&currenTime)) +
+						"\nLocation: 127.0.0.1" + (string)path +    
+						"\nCache-Control: max-age=30" + 
+						"\nExpires:" + (string)asctime(&expire_tm) + 
+						"\nContent-Length:" + str + 
+						"\nContent-Type: text / html; charset = iso - 8859 - 1 string(content)\n" + contenido;
 
 			strcpy(sentMessage, output.c_str());
 	}
 	else
 	{
 		using namespace std;
-		string output = "HTTP/1.1 404 NOT FOUND\n"
-						"date" + string(ctime(&currenTime)) + '\n' +
-						"Cache-Control: max-age=30" + '\n' +
-						"Expires:" + (string)asctime(&expire_tm) + '\n' +
-						"Content-Length: 0" + '\n' +
-						"Content-Type: text / html; charset = iso - 8859 - 1 string(content)" + '\n';
+		string output = "HTTP/1.1 404 NOT FOUND" 
+						"\ndate" + string(ctime(&currenTime)) + 
+						"\nCache-Control: max-age=30" +
+						"\nExpires:" + (string)asctime(&expire_tm) + 
+						"\nContent-Length: 0" + 
+						"\nContent-Type: text / html; charset = iso - 8859 - 1 string(content)\n" ;
 
 		strcpy(sentMessage, output.c_str());
 	}
