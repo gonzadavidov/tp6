@@ -37,25 +37,8 @@ startConnection()
 	socket_forServer->non_blocking(true);
 }
 
-void server::
-sendMessage()
-{
-	char buf[512] = "Hello from server.";
 
-	size_t len;
-	boost::system::error_code error;
-
-	do
-	{
-		len = socket_forServer->write_some(boost::asio::buffer(buf, strlen(buf)), error);
-	} while ((error.value() == WSAEWOULDBLOCK));
-	if (error)
-		std::cout << "Error while trying to connect to server " << error.message() << std::endl;
-}
-
-
-
-void server::
+bool server::
 receiveMessage()
 {
 	boost::system::error_code error;
@@ -65,6 +48,7 @@ receiveMessage()
 	t.start();
 	boost::timer::cpu_times pastTime = t.elapsed();
 	double elapsedSeconds = 0.0;
+	bool received = false;
 
 	do
 	{
@@ -80,16 +64,41 @@ receiveMessage()
 		}
 
 		if (!error)
+		{
 			receivedMessage[lenOfMessage] = '\0';
+		}
 
 	} while (error.value() == WSAEWOULDBLOCK);
 
 	if (!error)
-		std::cout << std::endl << "Server sais: " << receivedMessage << std::endl;
+	{
+		received = true;
+	}
 	else
+	{
 		std::cout << "Error while trying to connect to server " << error.message() << std::endl;
+	}
+	return received;
 }
 
+bool server::
+messageCheck()
+{
+	bool okey = false;
+	if (CRLF())
+	{
+		if (first_line())
+		{
+			if (second_line())
+			{
+				pathCopy();
+				okey = true;
+			}
+		}
+	}
+	return okey;
+
+}
 
 bool server::
 CRLF()
@@ -167,7 +176,7 @@ second_line()
 	return correct;
 }
 
-bool server::
+void server::
 pathCopy()
 {
 	for (int count = 0; count < MESSAGE_LENGTH; count++)   
@@ -189,7 +198,7 @@ pathCopy()
 }
 
 bool server::
-ispath()
+isPath()
 {
 	bool result = false;
 	for (int count = 0; count <= PATHS && result != true; count++)

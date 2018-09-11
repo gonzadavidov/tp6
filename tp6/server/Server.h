@@ -25,10 +25,10 @@ public:
 	server();
 	void startConnection();
 	void sendMessage();
-	void receiveMessage();
-	bool pathCopy();							//guarda el path en el arreglo
-	bool ispath();
-	bool fillContent(FILE* file);
+	bool receiveMessage();							
+	bool isPath();
+	bool message(bool);
+	bool messageCheck();
 	~server();
 	char receivedMessage[MESSAGE_LENGTH];		//Mensaje recibido
 	char sentMessage[SENT_MESSAGE_LENGTH];
@@ -44,8 +44,9 @@ private:
 	bool CRLF();						//busca que esten los 3 CRLF
 	bool first_line();					//se fija que la primera linea sea correcta
 	bool second_line();					//se fija que la segunda linea sea correcta
-	bool message(bool);
-	unsigned int messageLength;
+	void pathCopy();					//guarda el path en el arreglo
+	bool fillContent(FILE* file);
+	int messageLength;
 	const char * server_paths[PATHS] = { "example_paths1/folder","example_paths2/folder","example_paths3/folder","example_paths4/folder" };
 	
 	std::string contenido;
