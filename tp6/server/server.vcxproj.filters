@@ -18,7 +18,7 @@
     <ClCompile Include="Server.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="MainServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

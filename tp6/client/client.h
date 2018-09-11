@@ -4,6 +4,7 @@
 #include <boost/asio.hpp>
 #include <boost/chrono.hpp>
 #include <boost/timer/timer.hpp>
+#include <fstream>
 
 
 #define HELLO_PORT_STR "80"
@@ -17,8 +18,9 @@ public:
 	client();
 	void startConnection(const char* host);
 	void receiveMessage();
+	void mandarMensaje(char* mensaje);
 	unsigned int largoDelMensaje;
-	char* mensaje;
+	string mensajeRecibido;
 	~client();
 
 private:
