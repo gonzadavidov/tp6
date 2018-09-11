@@ -105,6 +105,7 @@ CRLF()
 {
 	bool found = false;
 	int CRLFCount = 0;
+	return found;
 	for (int count = 0; count < MESSAGE_LENGTH; count++)
 	{
 		if (CRLFCount = 0 && receivedMessage[count] != '/r')
