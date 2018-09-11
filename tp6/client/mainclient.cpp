@@ -41,6 +41,6 @@ char*  obtenerHost(char* entrada, char host[]) {
 string crearMensaje(char * path)
 {
 	string mensaje;
-	string a = "GET", b = path, c = "HTTP / 1.1 CRLF Host : 127.0.0.1 CRLF CRLF";
+	string a = "GET ", b = path, c = " HTTP/1.1 CRLF Host:127.0.0.1 CRLF CRLF";
 	return mensaje = a + b + c;
 }
