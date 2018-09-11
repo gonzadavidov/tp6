@@ -48,7 +48,7 @@ receiveMessage()
 	do
 	{
 		len = socket_forClient->read_some(boost::asio::buffer(buf), error);
-		mensajeRecibido = mensajeRecibido + &buf[0];  //HACER STRING A BUF
+		messageReceived = messageReceived + &buf[0];  //HACER STRING A BUF
 		boost::timer::cpu_times currentTime = t.elapsed();
 
 		if ((currentTime.wall - pastTime.wall) > 1e9)
@@ -65,14 +65,15 @@ receiveMessage()
 
 	if (!error) {
 		largoDelMensaje = len;
-		mensaje = buf;
+		messageReceived = buf;
 		cout << std::endl << "Server sais: " << buf << std::endl;
 	}
 	else
 		cout << "Error while trying to connect to server " << error.message() << std::endl;
 }
 
-void client::mandarMensaje(char* mensaje)
+void client::
+sendMensaje(char* mensaje)
 {
 	boost::system::error_code error;
 	do
