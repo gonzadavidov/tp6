@@ -71,12 +71,12 @@ receiveMessage()
 }
 
 void client::
-sendMessage()
+sendMessage(const char* mensaje)
 {
 	boost::system::error_code error;
 	do
 	{
-		socket_forClient->write_some(boost::asio::buffer(message, strlen(message)), error);
+		socket_forClient->write_some(boost::asio::buffer(mensaje, strlen(mensaje)), error);
 
 	} while (error.value() == WSAEWOULDBLOCK);
 

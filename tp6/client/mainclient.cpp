@@ -2,7 +2,7 @@
 
 using namespace std;
 
-char * obtenerHost(char* entrada, char host[]);
+char*  obtenerHost(char* entrada, char host[]);
 string crearMensaje(char* path);
 
 
@@ -10,18 +10,17 @@ int
 main(int argc, char* argv[])
 {
 	char host[100];
-	string msg;
 	client client;
 	cout << "Tratando de conectarse a " << obtenerHost(argv[1], host) << " Puerto: " << HELLO_PORT_STR << endl; //mensaje
 	client.startConnection(obtenerHost(argv[1], host));  //conecta al host
-	msg = crearMensaje(argv[1]);		//se crea el mensaje para solicitarle al server en el  formato q interpreta
-	strcpy(client.message, msg.c_str());
-	client.sendMessage();		//se envia mensaje al servidor
+	string mensajeSolicitud = crearMensaje(argv[1]);		//se crea el mensaje para solicitarle al server en el  formato q interpreta
+	client.sendMessage(mensajeSolicitud.c_str());		//se envia mensaje al servidor
 	client.receiveMessage();					//espera y recibe respuesta del server
 	ofstream archivo_salida("wwwPaginacom.txt");	// Se abre el archivo TXT para escribir	
 	archivo_salida << client.messageReceived;		// Se escribe en el archivo TXT el mensaje recibido del servidor
 	archivo_salida.close();							// Se cierra el archivo
 	cout << "Press Enter to exit..." << endl;
+
 	getchar();
 	return 0;
 }

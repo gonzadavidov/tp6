@@ -9,7 +9,6 @@
 
 #define HELLO_PORT_STR "80"
 #define SERVER_IP "localhost"
-#define MESSAGE_LENGTH 400
 
 using namespace std;
 
@@ -19,11 +18,10 @@ public:
 	client();
 	void startConnection(const char* host);
 	void receiveMessage();
-	void sendMessage();
+	void sendMessage(const char* mensaje);
 	unsigned int messageLength;
 	string messageReceived;
 	~client();
-	char message [MESSAGE_LENGTH];
 
 private:
 	boost::asio::io_service* IO_handler;
