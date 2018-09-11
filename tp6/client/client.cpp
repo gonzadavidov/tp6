@@ -61,7 +61,7 @@ receiveMessage()
 	} while (error.value() == WSAEWOULDBLOCK);
 
 	if (!error) {
-		messageReceived = buf;
+		messageReceived = buf.c_str();
 		cout << std::endl << "Server says: " << buf << std::endl;
 	}
 	else
