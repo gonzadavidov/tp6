@@ -6,7 +6,6 @@ client()
 	IO_handler = new boost::asio::io_service();
 	socket_forClient = new boost::asio::ip::tcp::socket(*IO_handler);
 	client_resolver = new boost::asio::ip::tcp::resolver(*IO_handler);
-	messageReceived = "";
 }
 
 client::
@@ -47,7 +46,6 @@ receiveMessage()
 	do
 	{
 		messageLength = socket_forClient->read_some(boost::asio::buffer(buf), error);
-		messageReceived = messageReceived + &buf[0];  //HACER STRING A BUF
 		boost::timer::cpu_times currentTime = t.elapsed();
 
 		if ((currentTime.wall - pastTime.wall) > 1e9)
@@ -71,7 +69,7 @@ receiveMessage()
 }
 
 void client::
-sendMessage(const char* mensaje)
+sendMessage(const char * mensaje)
 {
 	boost::system::error_code error;
 	do
