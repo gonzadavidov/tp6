@@ -10,6 +10,7 @@
 #include <boost/timer/timer.hpp>
 
 
+
 #define CRT_SECURE_NO_WARNINGS
 #define PORT "80"
 #define MESSAGE_LENGTH 600
@@ -44,7 +45,7 @@ private:
 	bool first_line();					//se fija que la primera linea sea correcta
 	bool second_line();					//se fija que la segunda linea sea correcta
 	bool message(bool);
-	unsigned int messageLength;
+	int messageLength;
 	const char * server_paths[PATHS] = { "example_paths1/folder","example_paths2/folder","example_paths3/folder","example_paths4/folder" };
 	
 	std::string contenido;
