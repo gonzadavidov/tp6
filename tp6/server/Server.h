@@ -8,8 +8,9 @@
 #include <boost/bind.hpp>
 #include <boost/chrono.hpp>
 #include <boost/timer/timer.hpp>
+#include <stdlib.h>
 
-
+#define _OPEN_SYS_ITOA_EXT
 #define CRT_SECURE_NO_WARNINGS
 #define PORT "80"
 #define MESSAGE_LENGTH 600

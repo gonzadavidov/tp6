@@ -6,7 +6,7 @@ client()
 	IO_handler = new boost::asio::io_service();
 	socket_forClient = new boost::asio::ip::tcp::socket(*IO_handler);
 	client_resolver = new boost::asio::ip::tcp::resolver(*IO_handler);
-	mensajeRecibido = "";
+	messageReceived = "";
 }
 
 client::
@@ -37,8 +37,7 @@ void client::
 receiveMessage()
 {
 	boost::system::error_code error;
-	char buf[512];
-	size_t len = 0;
+	string buf;
 	cout << "Receiving Message" << std::endl;
 	boost::timer::cpu_timer t;
 	t.start();
@@ -47,7 +46,7 @@ receiveMessage()
 
 	do
 	{
-		len = socket_forClient->read_some(boost::asio::buffer(buf), error);
+		messageLength = socket_forClient->read_some(boost::asio::buffer(buf), error);
 		messageReceived = messageReceived + &buf[0];  //HACER STRING A BUF
 		boost::timer::cpu_times currentTime = t.elapsed();
 
@@ -59,12 +58,11 @@ receiveMessage()
 		}
 
 		if (!error)
-			buf[len] = '\0';
+			buf[messageLength] = '\0';
 
 	} while (error.value() == WSAEWOULDBLOCK);
 
 	if (!error) {
-		largoDelMensaje = len;
 		messageReceived = buf;
 		cout << std::endl << "Server sais: " << buf << std::endl;
 	}
@@ -73,7 +71,7 @@ receiveMessage()
 }
 
 void client::
-sendMensaje(char* mensaje)
+sendMessage(char* mensaje)
 {
 	boost::system::error_code error;
 	do
