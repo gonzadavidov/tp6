@@ -213,6 +213,7 @@ fillContent(FILE* file)
 		contenido =contenido + (char) getc(file);
 		i++;
 	} while (c != EOF);
+
 	messageLength = i;
 }
 
@@ -254,17 +255,19 @@ message(bool check)
 	time_t currenTime = time(NULL);
 	struct tm expire_tm = *localtime(&currenTime);
 	expire_tm.tm_sec += 30;
-	char buffer [sizeof(unsigned int)*8+1];
-	utoa (messageLength,buffer,DECIMAL);
 	if (answer)
 	{
 		using namespace std;
+		stringstream auxiliar;
+		auxiliar << messageLength;
+		string str = auxiliar.str();
+
 		string output = "HTTP/1.1 200 OK\n"
 						"date" + string(ctime(&currenTime)) + '\n' +
-						"Location:" + (string)LOCALHOST + (string)path + '\n' +   //revisar esto
+						"Location: 127.0.0.1" + (string)path + '\n' +   //revisar esto
 						"Cache-Control: max-age=30" + '\n' +
 						"Expires:" + (string)asctime(&expire_tm) + '\n' +
-						"Content-Length:" + string(buffer) + '\n' +
+						"Content-Length:" + str + '\n' +
 						"Content-Type: text / html; charset = iso - 8859 - 1 string(content)" + '\n' + contenido;
 
 			strcpy(sentMessage, output.c_str());
