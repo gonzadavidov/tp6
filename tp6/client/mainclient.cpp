@@ -32,6 +32,7 @@ char*  obtenerHost(char* entrada, char host[]) {
 		i++;
 		entrada++;
 	}
+	host[i] = '\0';
 	return host;
 }
 
