@@ -128,11 +128,11 @@ CRLF()
 			}
 			else
 			{
-				if (CRLFCount = 0)
+				if (CRLFCount == 0)
 				{
 					firstLine[count] = receivedMessage[count];
 				}
-				else if (CRLFCount = 1)
+				else if (CRLFCount == 1)
 				{
 					secondLine[count] = receivedMessage[count];
 				}
